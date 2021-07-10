@@ -1,0 +1,50 @@
+:host {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 40px 0;
+
+  .info {
+    padding: 20px;
+    background: whitesmoke;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 1s;
+  }
+
+  table {
+    border-spacing: 3px;
+    padding: 10px;
+    border-radius: 6px;
+    background: #a27d3a;
+    box-shadow: #3f71a4 0px 6px 20px 7px;
+    tr {
+      td {
+        height: 60px;
+        width: 60px;
+        text-align: center;
+        background: #87b121;
+        border: solid #87b121 2px;
+        border-radius: 2px;
+        transition: ease border 0.05s;
+        position: relative;
+        &:hover {
+          border: solid hsl(77deg 69% 58%) 2px;
+          cursor: help;
+        }
+        img {
+          height: 30px;
+          width: 30px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

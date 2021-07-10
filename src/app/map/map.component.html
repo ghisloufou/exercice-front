@@ -1,0 +1,25 @@
+<div class="info">
+  <div>Informations sur la case :</div>
+  <div *ngIf="!hoveredCell">
+    Survole une case pour afficher ses informations
+  </div>
+  <div *ngIf="hoveredCell">
+    <div>Valeur: {{ hoveredCell.value }}</div>
+    <div>Type: {{ hoveredCell.type }}</div>
+    <div>Coordonnées: {{ hoveredCell.type }}</div>
+  </div>
+</div>
+<table>
+  <tr *ngFor="let row of matrix">
+    <td
+      *ngFor="let cell of row"
+      (mouseover)="hoveredCell = cell"
+      (click)="hoveredCell = cell"
+    >
+      <!-- {{ cell.type }} -->
+      <img src="../../assets/treasure.svg" *ngIf="cell.type === 'treasure'">
+      <img src="../../assets/mountain.svg" *ngIf="cell.type === 'mountain'">
+      <img src="../../assets/mountain.svg" *ngIf="cell.type === 'player'">
+    </td>
+  </tr>
+</table>
