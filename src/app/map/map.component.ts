@@ -10,7 +10,13 @@ export class MapComponent implements OnInit {
 
   map!: TreasureMap;
   matrix: CellData[][] = [];
-  hoveredCell: any = undefined;
+  hoveredCell!: CellData;
+
+  description = {
+    treasure: "Vous devez passer par dessus pour le ramasser !",
+    mountain: "Les montagnes ne sont pas franchissables.",
+    player: "C'est un aventurier.",
+  }
 
   ngOnInit(): void {
     // If map is loaded before 50ms then do not init fake map
@@ -24,8 +30,8 @@ export class MapComponent implements OnInit {
     this.ds.getData().subscribe((treasureMap) => {
       this.map = treasureMap;
       this.fillMap();
-      this.setCell({ value: 1, type: 'mountain', x: 2, y: 2 });
-      this.setCell({ value: 2, type: 'treasure', x: 3, y: 2 });
+      this.setCell({ value: 1, type: 'Mountain', x: 2, y: 1 });
+      this.setCell({ value: 2, type: 'Treasure', x: 3, y: 2 });
       console.table(this.matrix);
     });
   }
@@ -40,7 +46,9 @@ export class MapComponent implements OnInit {
     this.matrix = Array(this.map.height)
       .fill(null)
       .map((a, i) => {
-        return Array(this.map.width).fill({ value: 1, type: 'grass' });
+        return Array(this.map.width).fill(null).map((b, j) => {
+          return { value: 1, type: 'Grass', x: i+1, y: j+1}
+        });
       });
   }
 

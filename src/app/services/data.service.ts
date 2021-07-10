@@ -10,7 +10,7 @@ export interface TreasureMap {
 
 export interface CellData {
   value: any;
-  type: 'treasure' | 'player' | 'mountain' | 'grass';
+  type: 'Treasure' | 'Player' | 'Mountain' | 'Grass';
   x: number;
   y: number;
 }
