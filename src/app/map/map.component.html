@@ -1,28 +1,20 @@
-<div class="info">
-  <div>Informations sur la case :</div>
-  <div *ngIf="!hoveredCell">
-    Survole une case pour afficher ses informations
-  </div>
-  <div *ngIf="hoveredCell">
-    <div>Valeur: {{ hoveredCell.value }}</div>
-    <div>Type: {{ hoveredCell.type }}</div>
-    <div>Coordonnées: ({{ hoveredCell.x }}, {{ hoveredCell.y }})</div>
-    <div *ngIf="hoveredCell.type === 'Treasure'">{{description.treasure}}</div>
-    <div *ngIf="hoveredCell.type === 'Mountain'">{{description.mountain}}</div>
-    <div *ngIf="hoveredCell.type === 'Player'">{{description.player}}</div>
-  </div>
-</div>
+
 <!-- TODO: add a warning when the loaded map is too big. -->
 <!-- TODO: add a warning when the placed objects have out of bounds coordinates. -->
 <!-- TODO: add a warning when the placed objects have overlapping coordinates. -->
-<table>
+<table *ngIf="map">
   <tr *ngFor="let row of matrix">
     <td
       *ngFor="let cell of row"
-      (mouseover)="hoveredCell = cell"
-      (click)="hoveredCell = cell"
+      (mouseover)="emitHoveredCell(cell)"
+      (click)="emitHoveredCell(cell)"
     >
-      <div class="cell-value" [ngStyle]="{display: cell.value > 1 ? 'block' : 'none'}">{{ cell.value }}</div>
+      <div
+        class="cell-value"
+        [ngStyle]="{ display: cell.value > 1 ? 'block' : 'none' }"
+      >
+        {{ cell.value }}
+      </div>
       <!-- {{ cell.type }} -->
       <img src="../../assets/treasure.svg" *ngIf="cell.type === 'Treasure'" />
       <img src="../../assets/mountain.svg" *ngIf="cell.type === 'Mountain'" />

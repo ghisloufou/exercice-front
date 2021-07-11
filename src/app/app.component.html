@@ -1,16 +1,57 @@
 <div class="container">
   <h2 class="title">Carte aux trésors</h2>
-  <app-map></app-map>
+
+  <div class="info">
+    <div *ngIf="map && error === ''">
+      <div>Informations sur la case :</div>
+      <div *ngIf="!hoveredCell">
+        Survole une case pour afficher ses informations
+      </div>
+      <div *ngIf="hoveredCell">
+        <div>Valeur: {{ hoveredCell.value }}</div>
+        <div>Type: {{ hoveredCell.type }}</div>
+        <div>Coordonnées: ({{ hoveredCell.x }}, {{ hoveredCell.y }})</div>
+        <div *ngIf="hoveredCell.type === 'Treasure'">
+          {{ description.treasure }}
+        </div>
+        <div *ngIf="hoveredCell.type === 'Mountain'">
+          {{ description.mountain }}
+        </div>
+        <div *ngIf="hoveredCell.type === 'Player'">
+          {{ description.player }}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!map && error === ''">
+      Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
+    </div>
+    <div class="error" *ngIf="error !== ''">
+      Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
+    </div>
+  </div>
+
+  <app-map [map]="map" (hoveredCellEvent)="hoveredCell = $event"></app-map>
   <div class="actions">
-    <button id="load">Charger le fichier</button>
-    <button id="save">Sauvegarder dans le fichier</button>
+    <label id="load">
+      <input type="file" accept=".txt" (input)="postFile($event)" />
+      Charger un fichier
+    </label>
+    <a
+      id="save"
+      [href]="newFileUrl"
+      download
+      [ngClass]="{ disabled: newFileUrl === '' }"
+    >
+      Télécharger la nouvelle carte
+    </a>
   </div>
   <!-- TODO: régler le problème de background -->
   <div class="copyright">
     Icons made by
     <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons"
       >Smashicons</a
-    > & <a href="https://www.freepik.com" title="Freepik">Freepik</a> 
+    >
+    & <a href="https://www.freepik.com" title="Freepik">Freepik</a>
     from
     <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
   </div>

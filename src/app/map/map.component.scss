@@ -6,21 +6,6 @@
   flex-direction: column;
   margin: 40px 0;
 
-  .info {
-    & > div:first-of-type {
-      font-weight: 500;
-    }
-    padding: 20px;
-    background: whitesmoke;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    transition: all ease 1s;
-    min-height: 160px;
-    min-width: 400px;
-  }
-
   table {
     border-spacing: 3px;
     padding: 10px;
