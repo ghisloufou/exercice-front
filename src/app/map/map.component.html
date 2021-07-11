@@ -3,7 +3,7 @@
 <!-- TODO: add a warning when the placed objects have out of bounds coordinates. -->
 <!-- TODO: add a warning when the placed objects have overlapping coordinates. -->
 <table *ngIf="map">
-  <tr *ngFor="let row of matrix">
+  <tr *ngFor="let row of map.matrix">
     <td
       *ngFor="let cell of row"
       (mouseover)="emitHoveredCell(cell)"

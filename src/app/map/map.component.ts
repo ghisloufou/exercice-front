@@ -20,8 +20,6 @@ export class MapComponent implements OnInit {
 
   constructor() {}
 
-  matrix: CellData[][] = [];
-
   ngOnInit(): void {
     // Get data then fill the map
     // this.ds.dataObservable().subscribe((treasureMap) => {
@@ -54,7 +52,7 @@ export class MapComponent implements OnInit {
     //       });
     //   });
     if (this.map) {
-      this.matrix = Array(this.map.height)
+      this.map.matrix = Array(this.map.height)
         .fill(null)
         .map((a, i) => {
           return Array(this.map.width)
@@ -77,11 +75,11 @@ export class MapComponent implements OnInit {
   setCell(cell: CellData) {
     if (
       cell.x > 0 &&
-      cell.x <= this.matrix.length &&
-      cell.y <= this.matrix[0].length &&
+      cell.x <= this.map.matrix.length &&
+      cell.y <= this.map.matrix[0].length &&
       cell.y > 0
     ) {
-      this.matrix[cell.y - 1][cell.x - 1] = cell;
+      this.map.matrix[cell.y - 1][cell.x - 1] = cell;
     }
   }
 }

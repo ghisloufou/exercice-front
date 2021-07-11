@@ -9,6 +9,7 @@ import { CellData, DataService, TreasureMap } from './services/data.service';
 export class AppComponent {
   newFileUrl: string = '';
   map!: TreasureMap;
+  newMap!: TreasureMap;
   hoveredCell!: CellData;
 
   description = {
@@ -16,18 +17,19 @@ export class AppComponent {
     mountain: 'Les montagnes ne sont pas franchissables.',
     player: "C'est un aventurier.",
   };
-  error = '';
+  error = false;
 
   constructor(private ds: DataService) {}
 
   postFile(event: Event) {
     let files = (event.target as HTMLInputElement).files;
-    console.log('files', files);
     if (files) {
-      console.log('file', files[0]);
       this.ds.postFile(files[0]).subscribe((response) => {
         console.log('response', response);
-        this.newFileUrl = response.data.newFileUrl;
+        this.newFileUrl = response.newFileUrl;
+        this.error = !response.status;
+        this.map = response.map;
+        this.newMap = response.newMap;
       });
     }
     // Reset input value

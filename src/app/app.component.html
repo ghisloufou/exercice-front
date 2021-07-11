@@ -2,7 +2,7 @@
   <h2 class="title">Carte aux trésors</h2>
 
   <div class="info">
-    <div *ngIf="map && error === ''">
+    <div *ngIf="map && !error">
       <div>Informations sur la case :</div>
       <div *ngIf="!hoveredCell">
         Survole une case pour afficher ses informations
@@ -22,11 +22,11 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!map && error === ''">
+    <div *ngIf="!map && !error">
       Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
     </div>
-    <div class="error" *ngIf="error !== ''">
-      Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
+    <div class="error" *ngIf="error">
+      Attention, le format du fichier envoyé n'est pas bon.
     </div>
   </div>
 
