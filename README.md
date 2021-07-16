@@ -14,6 +14,9 @@ Run `ng build --prod` to build the project into the backend public folder.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+### Build path
+You might need to change angular.json option "outputPath": "../back/public" to the public folder of the backend
+
 ## Room for improvements:
 
 Improve page layout when map is really large
