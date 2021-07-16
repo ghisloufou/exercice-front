@@ -31,7 +31,6 @@ export class AppComponent {
     let files = (event.target as HTMLInputElement).files;
     if (files) {
       this.ds.postFile(files[0]).subscribe((response) => {
-        console.log('response', response);
         this.newFileUrl = response.newFileUrl;
         this.error = !response.status;
         this.map = response.map;

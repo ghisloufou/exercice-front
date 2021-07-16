@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 40px 0;
+  margin: 40px 20px;
 
   table {
     border-spacing: 3px;
@@ -47,7 +47,9 @@
     }
     tr {
       td {
+        min-height: 60px;
         height: 60px;
+        min-width: 60px;
         width: 60px;
         text-align: center;
         background: #87b121;
@@ -59,7 +61,8 @@
           border: solid hsl(77deg 69% 58%) 2px;
           cursor: help;
         }
-        img, .was-player {
+        img,
+        .was-player {
           height: 30px;
           width: 30px;
           position: absolute;
@@ -82,6 +85,11 @@
           position: absolute;
           top: -4px;
           right: 4px;
+        }
+        .player-value {
+          position: absolute;
+          top: -4px;
+          left: 4px;
         }
       }
     }

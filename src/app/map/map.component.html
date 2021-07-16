@@ -1,6 +1,3 @@
-<!-- TODO: add a warning when the loaded map is too big. -->
-<!-- TODO: add a warning when the placed objects have out of bounds coordinates. -->
-<!-- TODO: add a warning when the placed objects have overlapping coordinates. -->
 <table *ngIf="map">
   <tr *ngFor="let row of map.matrix">
     <td
@@ -8,21 +5,7 @@
       (mouseover)="emitHoveredCell(cell)"
       (click)="emitHoveredCell(cell)"
     >
-      <div
-        class="treasure-value"
-        *ngIf="cell.type === 'Treasure' || cell.type === 'Treasure&Player'"
-        [ngStyle]="{ display: cell.treasureCount > 1 ? 'block' : 'none' }"
-      >
-        {{ cell.playerValue }}
-      </div>
-      <div
-        class="player-value"
-        *ngIf="cell.type === 'Player' || cell.type === 'Treasure&Player'"
-        [ngStyle]="{ display: cell.playerValue > 0 ? 'block' : 'none' }"
-      >
-        {{ cell.treasureCount }}
-      </div>
-      <img src="../../assets/treasure.svg" *ngIf="cell.type === 'Treasure'" />
+      <img src="../../assets/treasure.svg" *ngIf="cell.type === 'Treasure' || cell.type === 'Treasure&Player'" />
       <img src="../../assets/mountain.svg" *ngIf="cell.type === 'Mountain'" />
       <img
         [ngStyle]="{
@@ -31,8 +14,24 @@
         src="../../assets/traveler.svg"
         *ngIf="cell.type === 'Player' || cell.type === 'Treasure&Player'"
       />
+      
+      <div
+        class="treasure-value"
+        *ngIf="cell.type === 'Treasure' || cell.type === 'Treasure&Player'"
+        [ngStyle]="{ display: cell.treasureCount > 0 ? 'block' : 'none' }"
+      >
+        {{ cell.treasureCount }}
+      </div>
+      <div
+        class="player-value"
+        *ngIf="cell.type === 'Player' || cell.type === 'Treasure&Player'"
+        [ngStyle]="{ display: cell.playerValue > 0 ? 'block' : 'none' }"
+      >
+        {{ cell.playerValue }}
+      </div>
+
       <div class="was-player player-name" *ngIf="cell.type === 'WasPlayer'">
-        ({{ cell.stepCount }}){{ cell.lastPlayerName }}
+        ({{ cell.stepCount }})
       </div>
       <div class="player-name" *ngIf="cell.type === 'WasPlayer'">
         {{ cell.lastPlayerName }}
@@ -50,5 +49,5 @@
   <div class="south">S</div>
   <div class="west">W</div>
 
-  <div class="title">{{title}}</div>
+  <div class="title">{{ title }}</div>
 </table>
