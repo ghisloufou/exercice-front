@@ -26,7 +26,7 @@ export interface CellData {
   providedIn: 'root',
 })
 export class DataService {
-  apiUrl = 'http://127.0.0.1:3000/';
+  apiUrl = 'https://carte-aux-tresors.herokuapp.com/';
 
   constructor(private http: HttpClient) {
     console.log('postFile error');
