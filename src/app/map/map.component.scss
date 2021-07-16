@@ -12,6 +12,39 @@
     border-radius: 6px;
     background: #a27d3a;
     box-shadow: #3f71a4 0px 6px 20px 7px;
+    position: relative;
+    .north,
+    .east,
+    .south,
+    .west,
+    .title {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      color: white;
+      font-weight: 500;
+    }
+    .north {
+      top: 0;
+      left: 50%;
+    }
+    .east {
+      top: 50%;
+      left: 100%;
+    }
+    .south {
+      top: 100%;
+      left: 50%;
+    }
+    .west {
+      top: 50%;
+      left: 0;
+    }
+    .title {
+      top: -25px;
+      left: 50%;
+      font-size: 20px;
+    }
     tr {
       td {
         height: 60px;
@@ -26,7 +59,7 @@
           border: solid hsl(77deg 69% 58%) 2px;
           cursor: help;
         }
-        img {
+        img, .was-player {
           height: 30px;
           width: 30px;
           position: absolute;
@@ -34,7 +67,18 @@
           left: 50%;
           transform: translate(-50%, -50%);
         }
-        .cell-value {
+        .player-name {
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.8rem;
+          max-width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding: 0 2px;
+        }
+        .treasure-value {
           position: absolute;
           top: -4px;
           right: 4px;

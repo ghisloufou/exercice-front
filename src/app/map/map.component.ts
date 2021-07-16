@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
     return this._map;
   }
 
+  @Input() title!: string;
+
   constructor() {}
 
   ngOnInit(): void {

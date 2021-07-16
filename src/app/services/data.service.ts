@@ -10,10 +10,16 @@ export interface TreasureMap {
 }
 
 export interface CellData {
-  value: any;
-  type: 'Treasure' | 'Player' | 'Mountain' | 'Grass';
+  type: 'Treasure' | 'Player' | 'Mountain' | 'Grass' | 'Treasure&Player' | 'WasPlayer';
   x: number;
   y: number;
+  orientation?: number;
+  sequence?: string;
+  name?: string;
+  treasureCount: number;
+  playerValue: number;
+  lastPlayerName?: number;
+  stepCount?: number;
 }
 
 @Injectable({
@@ -22,7 +28,9 @@ export interface CellData {
 export class DataService {
   apiUrl = 'http://127.0.0.1:3000/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('postFile error');
+  }
   /**
    * Post a file and returns transformed file data
    * @argument {File} file

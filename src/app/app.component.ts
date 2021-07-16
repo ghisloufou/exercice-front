@@ -13,13 +13,19 @@ export class AppComponent {
   hoveredCell!: CellData;
 
   description = {
-    treasure: 'Vous devez passer par dessus pour le ramasser !',
-    mountain: 'Les montagnes ne sont pas franchissables.',
-    player: "C'est un aventurier.",
+    treasure: 'Un aventurier doit passer sur la case pour le ramasser !',
+    mountain: 'Les montagnes ne sont pas franchissables',
+    player: "C'est un aventurier",
+    grass: "C'est de l'herbe",
+    wasPlayer: "Un aventurier est passé par là",
   };
   error = false;
 
   constructor(private ds: DataService) {}
+
+  get hoveredCellEntries() {
+    return Object.entries(this.hoveredCell)
+  }
 
   postFile(event: Event) {
     let files = (event.target as HTMLInputElement).files;

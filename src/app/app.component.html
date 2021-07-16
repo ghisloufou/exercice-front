@@ -1,36 +1,50 @@
 <div class="container">
   <h2 class="title">Carte aux trésors</h2>
 
-  <div class="info">
-    <div *ngIf="map && !error">
-      <div>Informations sur la case :</div>
-      <div *ngIf="!hoveredCell">
-        Survole une case pour afficher ses informations
+  <div class="map-info-container">
+    <div class="info">
+      <div *ngIf="!map && !error">
+        Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
       </div>
-      <div *ngIf="hoveredCell">
-        <div>Valeur: {{ hoveredCell.value }}</div>
-        <div>Type: {{ hoveredCell.type }}</div>
-        <div>Coordonnées: ({{ hoveredCell.x }}, {{ hoveredCell.y }})</div>
-        <div *ngIf="hoveredCell.type === 'Treasure'">
-          {{ description.treasure }}
+      <div class="error" *ngIf="error">
+        Attention, le format du fichier envoyé n'est pas bon.
+      </div>
+      <div *ngIf="map && !error">
+        <div>Informations sur la case :</div>
+        <div *ngIf="!hoveredCell">
+          Survolez une case pour afficher ses informations
         </div>
-        <div *ngIf="hoveredCell.type === 'Mountain'">
-          {{ description.mountain }}
-        </div>
-        <div *ngIf="hoveredCell.type === 'Player'">
-          {{ description.player }}
+        <div *ngIf="hoveredCell">
+          <div *ngIf="hoveredCell.type === 'Treasure'">
+            {{ description.treasure }}
+          </div>
+          <div *ngIf="hoveredCell.type === 'Mountain'">
+            {{ description.mountain }}
+          </div>
+          <div *ngIf="hoveredCell.type === 'Player'">
+            {{ description.player }}
+          </div>
+          <div *ngIf="hoveredCell.type === 'Grass'">
+            {{ description.grass }}
+          </div>
+          <div *ngIf="hoveredCell.type === 'WasPlayer'">
+            {{ description.wasPlayer }}
+          </div>
+          <div *ngFor="let item of hoveredCellEntries">
+            {{ item[0] }}: {{ item[1] }}
+          </div>
         </div>
       </div>
     </div>
-    <div *ngIf="!map && !error">
-      Chargez un fichier pour pouvoir visualiser sa carte aux trésors !
-    </div>
-    <div class="error" *ngIf="error">
-      Attention, le format du fichier envoyé n'est pas bon.
-    </div>
-  </div>
 
-  <app-map [map]="map" (hoveredCellEvent)="hoveredCell = $event"></app-map>
+    <app-map
+    *ngIf="map" [title]="'Avant'" [map]="map" (hoveredCellEvent)="hoveredCell = $event"></app-map>
+    <app-map
+      *ngIf="newMap" [title]="'Après'"
+      [map]="newMap"
+      (hoveredCellEvent)="hoveredCell = $event"
+    ></app-map>
+  </div>
   <div class="actions">
     <label id="load">
       <input type="file" accept=".txt" (input)="postFile($event)" />
